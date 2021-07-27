@@ -1,0 +1,6 @@
+com\siemens\ct\brownfield\license\util\Base64Utils.class
+com\siemens\ct\brownfield\license\util\TimeUtils.class
+com\siemens\ct\brownfield\license\entity\License.class
+com\siemens\ct\brownfield\license\service\LicenseServiceImpl.class
+com\siemens\ct\brownfield\license\controller\LicenseController.class
+com\siemens\ct\brownfield\license\LicenseMainApplication.class
