@@ -1,5 +1,7 @@
 package com.siemens.ct.task.service;
 
+import com.google.common.util.concurrent.RateLimiter;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.siemens.ct.task.exception.GeneralException;
@@ -16,12 +18,17 @@ public class TaskServiceImpl {
     private static final String TEMPERATURE_URL = "http://www.weather.com.cn/data/sk/";
 
     /**
-     * 获取温度
+     * get temperature
      * @param province
      * @param city
      * @param county
      */
     public String getTemperature(String province, String city, String county) {
+        //set QPS is 100
+        RateLimiter rateLimiter = RateLimiter.create(100);
+        if(!rateLimiter.tryAcquire()){
+            throw new GeneralException("rate limiter error, max limiter is 100 !", 10000);
+        }
 
         if("".equals(province)){
             throw new GeneralException("province is null !", 10000);
